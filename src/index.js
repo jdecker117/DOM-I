@@ -39,4 +39,54 @@ const siteContent = { // DO NOT CHANGE THIS OBJECT
   },
 };
 
-console.log('project wired!')
+console.log('project wired!');
+
+const navLinks = document.querySelectorAll("header nav a");
+console.log(navLinks);
+
+navLinks.forEach(link => link.classList.add("italic"));
+
+const navLinksArray = Object.values(siteContent["nav"]);
+
+navLinks.forEach((link, index) => {link.textContent = navLinksArray[index]})
+// equivalant to =>
+// navLinks[0].textContent = siteContent["nav"]["nav-item-1"];
+// navLinks[1].textContent = siteContent["nav"]["nav-item-2"];
+// navLinks[2].textContent = siteContent["nav"]["nav-item-3"];
+// navLinks[3].textContent = siteContent["nav"]["nav-item-4"];
+// navLinks[4].textContent = siteContent["nav"]["nav-item-5"];
+// navLinks[5].textContent = siteContent["nav"]["nav-item-6"];
+
+const headerImg = document.querySelector("header img");
+headerImg.src = "http://localhost:9000/img/logo.png";
+
+// const linebreak = document.createElement("br");
+const headerText = document.querySelector(".cta");
+console.log(headerText);
+headerText.querySelector("h1").textContent = siteContent["cta"]["h1"];
+headerText.querySelector("button").textContent = siteContent["cta"]["button"];
+headerText.querySelector("img").src = "http://localhost:9000/img/cta.png";
+
+const main = Object.entries(siteContent["main-content"]);
+const mainHeaders = main.filter(key => key[0].includes("-h4"));
+const paragraphs = main.filter(key => key[1].includes("elementum"))
+
+const h4s = document.querySelectorAll(".main-content h4")
+h4s.forEach((h4, index) => {h4.textContent = mainHeaders[index][1]})
+
+const mainPs = document.querySelectorAll(".main-content p");
+mainPs.forEach((p, index) => {p.textContent = paragraphs[index][1]})
+// mainPs.forEach((p, index) => {p.textContent = main[index][1]})
+console.log(paragraphs);
+console.log(h4s)
+
+document.querySelector(".middle-img").src = "http://localhost:9000/img/accent.png";
+
+const contact = Object.values(siteContent["contact"])
+const contactPs = contact.filter(element => !element.includes("Contact"))
+
+document.querySelector(".contact h4").textContent = contact[0];
+document.querySelectorAll(".contact p").forEach((p, index) => {p.textContent = contactPs[index]})
+
+const cpr = document.querySelector("footer a").textContent = siteContent["footer"]["copyright"];
+document.querySelector("footer a").classList.add("bold");
